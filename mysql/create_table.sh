@@ -7,10 +7,17 @@ if [ $# -ne 2 ]
 then
 	echo "Usage:mtest2 emplid lastname firstname salary"
 else
-	#脚本变量一定要用双引号，字符串变量使用单引号
-	statement=" insert into em_admin values(NULL, '$1', $2)"
-	$MYSQL emwjs -u test <<EOF
-	$statement
+	$MYSQL  -uroot -ppassword <<EOF
+CREATE DATABASE DB1;
+USE DB1;
+CREATE TABLE `user`
+{
+userID int(11) not null,
+userName varchar(20) not null,
+userPass varchar(20) not null,
+age int(10) not null,
+primary key(userID)
+};
 EOF
 	if [ $? -eq 0 ]
 	then
